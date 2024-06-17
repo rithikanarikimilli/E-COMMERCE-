@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Products</title>
+    <style>body {
+            margin: 0;
+            background-color: palevioletred;
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif; 
+        }
+     
+
+        .navbar {
+            background-color:#333; 
+            color: white; 
+            padding: 10px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+        }
+
+        .user-info {
+            font-size: 16px;
+        }
+
+       
+        .topnav {
+            overflow: hidden;
+            background-color: v;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 10px 90px;
+            text-decoration: none;
+        }
+
+        .topnav a:hover {
+            background-color: black;
+            color: pink;
+        }
+
+        .topnav {
+            clear: both;
+        }
+
+        .user-info {
+            font-size: 16px;
+        }
+
+                .product-card {
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            position: relative; 
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-top: 10px;
+            font-size:30px;
+        }
+
+        .product-description {
+            margin-top: 30px;
+        }
+
+        .product-category {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: navy;
+        }
+
+        .add-to-cart {
+            position: absolute;
+            bottom: 10px;
+            left: 60%;
+            transform: translateX(-50%);
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0056b3;
+        }
+
+        .checkout {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 60px; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        .checkout .cart-symbol {
+            font-size: 24px; 
+            margin-left: 5px; 
+        }
+
+        .size-dropdown {
+            margin-top: 10px;
+        }
+
+        
+        .cart-item {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .undo-add {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .undo-add:hover {
+            background-color: #d14848;
+        }
+
+        
+        .cart-item {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .cart-container {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .total-price {
+            font-weight: bold;
+            text-align: right;
+        }
+        .checkout-container {
+    background-color:white;
+    color:black;
+    padding: 20px;
+    border-radius: 0 0 0 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+        .checkout-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .checkout-table td {
+            padding: 10px;
+            border-bottom: black;
+        }
+
+        .checkout-table th {
+            background-color: palevioletred;
+            text-align: left;
+        }
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .qty-dropdown {
+            width: 50px;
+        }
+
+        .delete-btn:hover {
+            background-color: #d14848;
+        }
+
+        .total-row {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topnav">
+    <a href="" class="category-link" data-category="running"></a>
+    <a href="" class="category-link" data-category="walking"></a>
+    <a href="" class="category-link" data-category="multipurpose"></a>
+    <button onclick="checkout()" id="checkoutBtn">PROCEED TO BUY</button>
+</div>
+
+<div class="navbar">
+    <div class="navbar-brand"><b><i>SHOP BY CATEGORY!</b></i></div>
+    <div class="user-info">Welcome, Rithika Narikimilli</div>
+</div>
+
+<div class="category-panel">
+    <div></div>
+</div>
+
+<div class="checkout-container">
+    <h2>ITEMS ADDED TO THE CART</h2>
+    <table class="checkout-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Size</th>
+                <th>Qty</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="checkoutItems">
+        </tbody>
+        <tfoot>
+            <tr class="total-row">
+                <td colspan="4">Total</td>
+                <td id="totalAmount"></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+    </table>
+</div>
+
+
+<div class="product-container">
+<div class="product-container">
+    <?php
+    $servername = "127.0.0.1:3307"; 
+    $username = "root"; 
+    $password = ""; 
+    $database = "shoe"; 
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT p.id, p.name, p.description, p.image_path,p.price,p.category
+    FROM products p
+    JOIN men m ON p.id = m.menid
+    
+    UNION
+    
+    SELECT p.id, p.name, p.description, p.image_path,p.price,p.category
+    FROM products p
+    JOIN women w ON p.id = w.id;
+    ";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+       
+        if (mysqli_num_rows($result) > 0) {
+           
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='product-card'>";
+                echo "<img class='product-image' src='" . $row["image_path"] . "' alt='Product Image'>";
+                echo "<div class='product-name'>" . $row["name"] .  "</div>"; 
+                echo "<div class='product-price'><b>Price:</b> ₹" . $row["price"] . "</div>";
+                echo "<div class='product-price'><b>for</b> " . $row["category"] . "</div>";
+                echo "<button class='add-to-cart' onclick='addToCart(" . $row['id'] . ", \"" . $row['name'] . "\", " . $row['price'] . ")'>Add to Cart</button>";
+                echo "<select class='size-dropdown'>";
+                echo "<option value='6'>6 UK</option>";
+                echo "<option value='7'>7 UK</option>";
+                echo "<option value='8'>8 UK</option>";
+                echo "<option value='9'>9 UK</option>";
+                echo "<option value='10'>10 UK</option>";
+                echo "<option value='11'>11 UK</option>";
+                echo "<option value='12'>12 UK</option>";
+                echo "</select>";
+                echo "<select class='qty-dropdown'>";
+                echo "<option value='1'>1</option>";
+                echo "<option value='2'>2</option>";
+                echo "<option value='3'>3</option>";
+                echo "<option value='4'>4</option>";
+                echo "<option value='5'>5</option>";
+                echo "</select>";
+                echo "</div>";
+            }
+        } else {
+            echo "No products found.";
+        }
+    } else {
+        echo "Error executing query: " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+    ?>
+</div>
+
+</div>
+<script>
+    let cart = [];
+
+    function addToCart(id, name, price) {
+        const size = document.querySelector('.product-card select').value;
+        const quantity = 1; 
+        const item = {
+            id: id,
+            name: name,
+            price: price,
+            size: size,
+            quantity: quantity
+        };
+        cart.push(item);
+        updateCheckout(); 
+        alert("Product added to cart!");
+    }
+
+    function updateCheckout() {
+        const checkoutItems = document.getElementById('checkoutItems');
+        const totalAmountElement = document.getElementById('totalAmount');
+        checkoutItems.innerHTML = ''; 
+        let totalAmount = 0;
+
+        cart.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>₹${item.price}</td>
+                <td>${item.size}</td>
+                <td>
+                    <select class="qty-dropdown" onchange="updateQuantity(${index}, this.value)">
+                        ${generateQtyOptions(item.quantity)}
+                    </select>
+                </td>
+                <td><button class="delete-btn" onclick="deleteFromCart(${index})">Delete</button></td>
+            `;
+            checkoutItems.appendChild(row);
+            totalAmount += item.price * item.quantity; 
+        });
+
+        totalAmountElement.textContent = `₹${totalAmount.toFixed(2)}`; 
+    }
+
+    function generateQtyOptions(selectedQty) {
+        let options = '';
+        for (let i = 1; i <= 5; i++) {
+            options += `<option value="${i}" ${selectedQty === i ? 'selected' : ''}>${i}</option>`;
+        }
+        return options;
+    }
+
+    function updateQuantity(index, quantity) {
+        cart[index].quantity = parseInt(quantity); 
+        updateCheckout(); 
+    }
+
+    function deleteFromCart(index) {
+        cart.splice(index, 1); 
+        updateCheckout(); 
+    }
+
+    function checkout() {
+    if (cart.length > 0) {
+        let cartItems = '';
+        let totalAmount = 0; 
+        cart.forEach(item => {
+            cartItems += `${item.name} - Size: ${item.size}, Quantity: ${item.quantity}, Price: ₹${item.price * item.quantity}\n`;
+            totalAmount += item.price * item.quantity; 
+        });
+        alert(`Items in your cart:\n${cartItems}\nTotal Amount to Pay: ₹${totalAmount.toFixed(2)}`); // Display total amount
+        cart = [];
+        updateCheckout(); 
+        updateTotalToPay(); 
+    } else {
+        alert("Your cart is empty!");
+    }
+}
+
+
+    document.querySelectorAll('.category-link').forEach(link => {
+        link.addEventListener('click', function() 
+        {
+            const category = this.dataset.category;
+          
+        });
+        function proceedToCheckout() {
+        alert("Proceeding to checkout...");
+    }
+    });
+</script>
+</body>
+</html>
