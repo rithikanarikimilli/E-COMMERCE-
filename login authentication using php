@@ -1,0 +1,22 @@
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    
+    $correctUsername = "user";
+    $correctPassword = "123";
+    
+    if ($username === $correctUsername && $password === $correctPassword) {
+     
+        header("Location: success.html");
+        exit;
+    } else {
+        
+        header("Location: failure.html");
+        exit;
+    }
+}
+?>
