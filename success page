@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>success page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: palevioletred; 
+        }
+
+        .panel {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid black; 
+            box-sizing: border-box; 
+            width: 600px; 
+            height: 250px; 
+            border-radius: 10%; 
+            text-align: center; 
+            margin: 0 auto; 
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .category-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+        }
+        .category-box {
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100px; 
+            text-align: center;
+            display: flex;
+            margin:0 10px;
+            
+            background-color: black;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .category-box a {
+            text-decoration: none;
+            color: white;
+            border-radius: 20%;
+            border:palevioletred;
+        }
+        .category-box:hover {
+            background-color: palevioletred; 
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h2>Welcome,Rithika Narikimilli</h2>
+        <h3><i>Categories Available</i></h3>
+        <h6><i>Running          // Walking    // Multipurpose</i></h6>
+        <div class="category-container">
+            <div class="category-box"><a href="home.php">SHOP NOW</a></div>
+                </div>
+    </div>
+</body>
+</html>
